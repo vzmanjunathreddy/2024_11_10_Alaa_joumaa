@@ -8,11 +8,7 @@ namespace Question1
 {
     public class BaseNotificationService
     {
-        public BaseNotificationService(string config)
-        {
-        }
-
-        public virtual void Send(string config)
+        public void Send(string config)
         {
 
         }
@@ -21,11 +17,34 @@ namespace Question1
     {
         string _config;
 
-        public NotificationServiceLiskov_Violation(string config) : base(config) 
+        public NotificationServiceLiskov_Violation(string config)
         {
             _config = config;
         }
 
+        public void Send(string user, string password)
+        {
 
+        }
+    }
+
+    public class NotificationServiceLiskov_Solution : BaseNotificationService, INotificationService
+    {
+        string _config;
+
+        public NotificationServiceLiskov_Solution(string config)
+        {
+            _config = config;
+        }
+
+        public void SendEmail(string email)
+        {
+            Send(_config);
+        }
+
+        public void SendSMS(string number)
+        {
+            Send(_config);
+        }
     }
 }
